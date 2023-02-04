@@ -1,6 +1,12 @@
 let mapleader=" "                              " 设置leader键为空格键
+set relativenumber
 set nocompatible "设置不兼容
-call plug#begin('~/.vim/plugged')
+
+filetype plugin on
+call plug#begin("/home/kobruh/.vim/plugged/")
+Plug 'rhysd/vim-clang-format'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdcommenter'
 Plug 'agude/vim-eldar'
 Plug 'EdenEast/nightfox.nvim'
@@ -59,11 +65,11 @@ let g:rnvimr_draw_border = 0
 highlight link RnvimrNormal CursorLine
 nnoremap <silent> R :RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
 let g:rnvimr_layout = { 'relative': 'editor',
-            \ 'width': &columns,
-            \ 'height': &lines,
-            \ 'col': 0,
-            \ 'row': 0,
-            \ 'style': 'minimal' }
+      \ 'width': &columns,
+      \ 'height': &lines,
+      \ 'col': 0,
+      \ 'row': 0,
+      \ 'style': 'minimal' }
 let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 
 " === rnvimr end
@@ -80,10 +86,10 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-	nmap <buffer> u <plug>UndotreeNextState
-	nmap <buffer> e <plug>UndotreePreviousState
-	nmap <buffer> U 5<plug>UndotreeNextState
-	nmap <buffer> E 5<plug>UndotreePreviousState
+  nmap <buffer> u <plug>UndotreeNextState
+  nmap <buffer> e <plug>UndotreePreviousState
+  nmap <buffer> U 5<plug>UndotreeNextState
+  nmap <buffer> E 5<plug>UndotreePreviousState
 endfunc
 
 " === UndoTree end
@@ -99,9 +105,9 @@ let g:vista_default_executive = 'coc'
 let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
+      \   "function": "\uf794",
+      \   "variable": "\uf71b",
+      \  }
 
 let g:scrollstatus_size = 15
 
@@ -217,15 +223,15 @@ autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
 
 
 " navigate chunks of current buffer
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
+" nmap [g <Plug>(coc-git-prevchunk)
+" nmap ]g <Plug>(coc-git-nextchunk)
 " navigate conflicts of current buffer
-nmap [c <Plug>(coc-git-prevconflict)
-nmap ]c <Plug>(coc-git-nextconflict)
+" nmap [c <Plug>(coc-git-prevconflict)
+" nmap ]c <Plug>(coc-git-nextconflict)
 " show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
+" nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
-nmap gc <Plug>(coc-git-commit)
+" nmap gc <Plug>(coc-git-commit)
 
 " Create keymap for open specified list with list options, like:
 nnoremap <silent> <space>g  :<C-u>CocList --normal gstatus<CR>
@@ -281,11 +287,13 @@ if (empty($TMUX))
 endif
 
 let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
+      \ 'colorscheme': 'onedark',
+      \ }
 
 let g:airline_theme='onedark'
 
 " colorscheme dracula
-colorscheme industry
+colorscheme gruvbox
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+let g:NERDCreateDefaultMappings = 0
